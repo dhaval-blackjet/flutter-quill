@@ -174,7 +174,6 @@ class QuillToolbarFontWeightButtonState extends QuillToolbarBaseButtonState<
             child: StreamBuilder<int>(
               stream: currentFontWeightStreamControllerStream,
               builder: (context, snapshot) {
-                debugPrint("currentStateValue : ${snapshot.data}");
                 return Text(
                   'w$currentStateValue',
                   overflow: options.labelOverflow,

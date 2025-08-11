@@ -608,7 +608,6 @@ class _TextLineState extends State<TextLine> {
     }
 
     final fontWeight = nodeStyle.attributes[Attribute.fontWeight.key];
-    debugPrint('nodeStyle.attributes[Attribute.fontWeight.key] : ${fontWeight}');
     if (fontWeight != null && fontWeight.value != null) {
       if (fontWeight.value is int) {
         res = res.merge(TextStyle(fontWeight: getFontWeight(fontWeight.value)));

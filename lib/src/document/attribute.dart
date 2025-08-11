@@ -254,9 +254,6 @@ class Attribute<T> {
   Map<String, dynamic> toJson() => <String, dynamic>{key: value};
 
   static Attribute? fromKeyValue(String key, dynamic value) {
-
-    debugPrint("String $key, dynamic $value");
-
     final origin = _registry[key];
     if (origin == null) {
       return null;
