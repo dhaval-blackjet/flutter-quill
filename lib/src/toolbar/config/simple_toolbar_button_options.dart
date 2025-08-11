@@ -28,6 +28,7 @@ export 'buttons/color_options.dart';
 export 'buttons/custom_button_options.dart';
 export 'buttons/font_family_options.dart';
 export 'buttons/font_size_options.dart';
+export 'buttons/font_weight_options.dart';
 export 'buttons/history_options.dart';
 export 'buttons/indent_options.dart';
 export 'buttons/link_style2_options.dart';
