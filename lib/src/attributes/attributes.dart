@@ -1,4 +1,3 @@
-import 'package:flutter_quill/flutter_quill.dart';
 import '../document/attributes/font_weight_attribute.dart';
 
 /// Initialize all custom attributes for Quill editor

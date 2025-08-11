@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_quill/flutter_quill.dart';
 
 import '../../common/utils/widgets.dart';
+import '../../document/attribute.dart';
 import '../../document/attributes/font_weight_attribute.dart';
 import '../base_button/base_value_button.dart';
 import '../config/buttons/font_weight_options.dart';
@@ -13,7 +13,7 @@ import '../config/buttons/font_weight_options.dart';
 class QuillToolbarFontWeightButton extends QuillToolbarBaseButton<
     QuillToolbarFontWeightButtonOptions,
     QuillToolbarFontWeightButtonExtraOptions> {
-  QuillToolbarFontWeightButton({
+  const QuillToolbarFontWeightButton({
     required super.controller,
     super.options = const QuillToolbarFontWeightButtonOptions(),
     super.baseOptions,
