@@ -128,7 +128,7 @@ class DeltaToMarkdown extends Converter<Delta, String>
         }
       },
     ),
-    Attribute.bold.key: _AttributeHandler(
+    Attribute.fontWeight.key: _AttributeHandler(
       beforeContent: (attribute, node, output) {
         if (node.previous?.containsAttr(attribute.key) != true) {
           output.write('**');

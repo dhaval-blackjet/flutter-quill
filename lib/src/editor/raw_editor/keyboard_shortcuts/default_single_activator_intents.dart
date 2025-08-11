@@ -30,7 +30,7 @@ Map<SingleActivator, Intent> defaultSinlgeActivatorIntents() {
       LogicalKeyboardKey.keyB,
       control: !_isDesktopMacOS,
       meta: _isDesktopMacOS,
-    ): const ToggleTextStyleIntent(Attribute.bold),
+    ): const ToggleTextStyleIntent(Attribute.fontWeight),
     SingleActivator(
       LogicalKeyboardKey.keyU,
       control: !_isDesktopMacOS,

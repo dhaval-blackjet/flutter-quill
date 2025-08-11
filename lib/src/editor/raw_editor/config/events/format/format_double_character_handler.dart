@@ -1,6 +1,7 @@
 import '../../../../../../quill_delta.dart';
 import '../../../../../controller/quill_controller.dart';
 import '../../../../../document/attribute.dart';
+import '../../../../../document/attributes/font_weight_attribute.dart';
 import '../../../../../document/document.dart';
 
 // We currently have only one format style is triggered by double characters.
@@ -75,7 +76,7 @@ bool handleFormatByWrappingWithDoubleCharacter({
   late final Attribute? style;
 
   if (formatStyle case DoubleCharacterFormatStyle.bold) {
-    style = const BoldAttribute();
+    style =  const FontWeightAttribute(100);
   } else if (formatStyle case DoubleCharacterFormatStyle.strikethrough) {
     style = const StrikeThroughAttribute();
   }

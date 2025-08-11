@@ -1,0 +1,5 @@
+name: quill_native_bridge_windows
+version: 0.0.1
+description: Dummy package to override the real one
+environment:
+  sdk: ">=2.12.0 <4.0.0"

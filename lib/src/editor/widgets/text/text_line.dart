@@ -544,8 +544,8 @@ class _TextLineState extends State<TextLine> {
     var res = const TextStyle(); // This is inline text style
     final color = nodeStyle.attributes[Attribute.color.key];
 
+
     <String, TextStyle?>{
-      Attribute.bold.key: defaultStyles.bold,
       Attribute.italic.key: defaultStyles.italic,
       Attribute.small.key: defaultStyles.small,
       Attribute.link.key: defaultStyles.link,
@@ -607,6 +607,24 @@ class _TextLineState extends State<TextLine> {
       }
     }
 
+    final fontWeight = nodeStyle.attributes[Attribute.fontWeight.key];
+    debugPrint('nodeStyle.attributes[Attribute.fontWeight.key] : ${fontWeight}');
+    if (fontWeight != null && fontWeight.value != null) {
+      if (fontWeight.value is int) {
+        res = res.merge(TextStyle(fontWeight: getFontWeight(fontWeight.value)));
+      } else if (fontWeight.value is String) {
+        // Handle string values if needed (e.g., 'bold', 'normal')
+        switch (fontWeight.value) {
+          case 'bold':
+            res = res.merge(TextStyle(fontWeight: FontWeight.bold));
+            break;
+          case 'normal':
+            res = res.merge(TextStyle(fontWeight: FontWeight.normal));
+            break;
+        }
+      }
+    }
+
     if (color != null && color.value != null) {
       var textColor = defaultStyles.color;
       if (color.value is String) {
@@ -626,6 +644,31 @@ class _TextLineState extends State<TextLine> {
 
     res = _applyCustomAttributes(res, nodeStyle.attributes);
     return res;
+  }
+
+  FontWeight getFontWeight(int value) {
+    switch (value) {
+      case 100:
+        return FontWeight.w100;
+      case 200:
+        return FontWeight.w200;
+      case 300:
+        return FontWeight.w300;
+      case 400:
+        return FontWeight.w400;
+      case 500:
+        return FontWeight.w500;
+      case 600:
+        return FontWeight.w600;
+      case 700:
+        return FontWeight.w700;
+      case 800:
+        return FontWeight.w800;
+      case 900:
+        return FontWeight.w900;
+      default :
+        return FontWeight.w400;
+    }
   }
 
   GestureRecognizer? _getRecognizer(Node segment, bool isLink) {

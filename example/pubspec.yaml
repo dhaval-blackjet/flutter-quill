@@ -32,6 +32,9 @@ dependency_overrides:
     path: ../flutter_quill_extensions
   flutter_quill_test:
     path: ../flutter_quill_test
+  quill_native_bridge_windows:
+    path: ../windows_quill_native_bridge
+
 
 flutter:
   uses-material-design: true

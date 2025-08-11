@@ -4,6 +4,7 @@ import '../controller/quill_controller.dart';
 import '../document/attribute.dart';
 import 'buttons/alignment/select_alignment_buttons.dart';
 import 'buttons/arrow_indicated_list_button.dart';
+import 'buttons/font_weight_button.dart';
 import 'embed/embed_button_builder.dart';
 import 'simple_toolbar.dart';
 
@@ -86,10 +87,9 @@ class QuillSimpleToolbar extends StatelessWidget
               baseOptions: config.buttonOptions.base,
             ),
           if (config.showBoldButton)
-            QuillToolbarToggleStyleButton(
-              attribute: Attribute.bold,
-              options: config.buttonOptions.bold,
+            QuillToolbarFontWeightButton(
               controller: controller,
+              options: config.buttonOptions.fontWeight,
               baseOptions: config.buttonOptions.base,
             ),
           if (config.showItalicButton)

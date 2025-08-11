@@ -7,6 +7,7 @@ import 'buttons/color_options.dart';
 import 'buttons/custom_button_options.dart';
 import 'buttons/font_family_options.dart';
 import 'buttons/font_size_options.dart';
+import 'buttons/font_weight_options.dart';
 import 'buttons/history_options.dart';
 import 'buttons/indent_options.dart';
 import 'buttons/link_style2_options.dart';
@@ -47,6 +48,7 @@ class QuillSimpleToolbarButtonOptions {
     this.redoHistory = const QuillToolbarHistoryButtonOptions(),
     this.fontFamily = const QuillToolbarFontFamilyButtonOptions(),
     this.fontSize = const QuillToolbarFontSizeButtonOptions(),
+    this.fontWeight = const QuillToolbarFontWeightButtonOptions(),
     this.bold = const QuillToolbarToggleStyleButtonOptions(),
     this.subscript = const QuillToolbarToggleStyleButtonOptions(),
     this.superscript = const QuillToolbarToggleStyleButtonOptions(),
@@ -94,6 +96,7 @@ class QuillSimpleToolbarButtonOptions {
   final QuillToolbarHistoryButtonOptions redoHistory;
   final QuillToolbarFontFamilyButtonOptions fontFamily;
   final QuillToolbarFontSizeButtonOptions fontSize;
+  final QuillToolbarFontWeightButtonOptions fontWeight;
   final QuillToolbarToggleStyleButtonOptions bold;
   final QuillToolbarToggleStyleButtonOptions subscript;
   final QuillToolbarToggleStyleButtonOptions superscript;
