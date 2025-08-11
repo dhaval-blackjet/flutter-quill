@@ -13,7 +13,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   
-  flutter_quill: ^11.0.0-dev.4
+  flutter_quill: ^11.0.0
   flutter_quill_extensions: ^11.0.0
   path: ^1.9.0
 
