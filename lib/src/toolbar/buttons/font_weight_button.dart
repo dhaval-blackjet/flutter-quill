@@ -44,19 +44,32 @@ class QuillToolbarFontWeightButtonState extends QuillToolbarBaseButtonState<
 
   @override
   int get currentStateValue {
-    final attribute = controller.getSelectionStyle().attributes[options.attribute.key];
-    if (attribute is FontWeightAttribute || attribute is Attribute || attribute != null) {
-      if(currentFontWeight != attribute?.value ||  attribute != null) {
-        currentFontWeight = attribute?.value;
-        currentFontWeightStreamControllerSink.add(currentFontWeight);
+    final attribute =
+        controller.getSelectionStyle().attributes[options.attribute.key];
+    int? weightValue;
+
+    if (attribute is FontWeightAttribute) {
+      weightValue = attribute.value;
+    } else if (attribute is Attribute) {
+      // Handle both string and int values
+      final value = attribute.value;
+      if (value is int) {
+        weightValue = value;
+      } else if (value is String) {
+        weightValue = int.tryParse(value);
       }
-      return attribute?.value ?? currentFontWeight;
-    }else if(currentFontWeight != 400) {
-      currentFontWeight = 400;
-      currentFontWeightStreamControllerSink.add(400);
-      return currentFontWeight;
     }
-    return currentFontWeight; // Default to normal weight if not set
+
+    // Update current font weight if it's different
+    if (weightValue != null && weightValue != currentFontWeight) {
+      currentFontWeight = weightValue;
+      currentFontWeightStreamControllerSink.add(weightValue);
+    } else if (weightValue == null && currentFontWeight != 400) {
+      currentFontWeight = 400; // Default to normal weight
+      currentFontWeightStreamControllerSink.add(400);
+    }
+
+    return currentFontWeight;
   }
 
   void _onDropdownButtonPressed() {
@@ -70,9 +83,10 @@ class QuillToolbarFontWeightButtonState extends QuillToolbarBaseButtonState<
 
   int currentFontWeight = 400;
   final _currentFontWeightStreamController = StreamController<int>.broadcast();
-  StreamSink<int> get currentFontWeightStreamControllerSink => _currentFontWeightStreamController.sink;
-  Stream<int> get currentFontWeightStreamControllerStream => _currentFontWeightStreamController.stream;
-
+  StreamSink<int> get currentFontWeightStreamControllerSink =>
+      _currentFontWeightStreamController.sink;
+  Stream<int> get currentFontWeightStreamControllerStream =>
+      _currentFontWeightStreamController.stream;
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +122,8 @@ class QuillToolbarFontWeightButtonState extends QuillToolbarBaseButtonState<
                   Attribute.fromKeyValue(Attribute.fontWeight.key, null),
                 );
               } else {
-                controller.formatSelection(FontWeightAttribute(weight));
+                final attribute = FontWeightAttribute(weight);
+                controller.formatSelection(attribute);
               }
               options.onSelected?.call(weight);
               _menuController.close();
@@ -178,14 +193,14 @@ class QuillToolbarFontWeightButtonState extends QuillToolbarBaseButtonState<
                   'w$currentStateValue',
                   overflow: options.labelOverflow,
                   style: options.style ??
-                      TextStyle(
+                      const TextStyle(
                         fontSize: 16, // Default icon size
                       ),
                 );
-              }
+              },
             ),
           ),
-          Icon(
+          const Icon(
             Icons.arrow_drop_down,
             size: 16, // Default icon size
           ),

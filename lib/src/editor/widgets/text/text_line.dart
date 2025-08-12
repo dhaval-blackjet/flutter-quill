@@ -544,7 +544,6 @@ class _TextLineState extends State<TextLine> {
     var res = const TextStyle(); // This is inline text style
     final color = nodeStyle.attributes[Attribute.color.key];
 
-
     <String, TextStyle?>{
       Attribute.italic.key: defaultStyles.italic,
       Attribute.small.key: defaultStyles.small,
@@ -607,20 +606,30 @@ class _TextLineState extends State<TextLine> {
       }
     }
 
-    final fontWeight = nodeStyle.attributes[Attribute.fontWeight.key];
-    if (fontWeight != null && fontWeight.value != null) {
-      if (fontWeight.value is int) {
-        res = res.merge(TextStyle(fontWeight: getFontWeight(fontWeight.value)));
-      } else if (fontWeight.value is String) {
-        // Handle string values if needed (e.g., 'bold', 'normal')
-        switch (fontWeight.value) {
-          case 'bold':
-            res = res.merge(TextStyle(fontWeight: FontWeight.bold));
-            break;
-          case 'normal':
-            res = res.merge(TextStyle(fontWeight: FontWeight.normal));
-            break;
+    // Handle font weight from attributes
+    final fontWeightAttr = nodeStyle.attributes[Attribute.fontWeight.key];
+    if (fontWeightAttr != null && fontWeightAttr.value != null) {
+      FontWeight? weight;
+      if (fontWeightAttr.value is int) {
+        weight = getFontWeight(fontWeightAttr.value);
+      } else if (fontWeightAttr.value is String) {
+        // Handle string values (e.g., 'bold', 'normal', '600')
+        final value = fontWeightAttr.value.toString().toLowerCase();
+        if (value == 'bold') {
+          weight = FontWeight.bold;
+        } else if (value == 'normal') {
+          weight = FontWeight.normal;
+        } else {
+          // Try to parse numeric string value (e.g., '600')
+          final numericValue = int.tryParse(value);
+          if (numericValue != null) {
+            weight = getFontWeight(numericValue);
+          }
         }
+      }
+
+      if (weight != null) {
+        res = res.merge(TextStyle(fontWeight: weight));
       }
     }
 
@@ -665,7 +674,7 @@ class _TextLineState extends State<TextLine> {
         return FontWeight.w800;
       case 900:
         return FontWeight.w900;
-      default :
+      default:
         return FontWeight.w400;
     }
   }

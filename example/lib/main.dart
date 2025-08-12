@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     // Load document
-    _controller.document = Document.fromJson(kQuillDefaultSample);
+    // _controller.document = Document.fromJson(kQuillDefaultSample);
   }
 
   @override
