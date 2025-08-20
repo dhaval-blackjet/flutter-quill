@@ -545,6 +545,7 @@ class _TextLineState extends State<TextLine> {
     final color = nodeStyle.attributes[Attribute.color.key];
 
     <String, TextStyle?>{
+      Attribute.bold.key: defaultStyles.bold,
       Attribute.italic.key: defaultStyles.italic,
       Attribute.small.key: defaultStyles.small,
       Attribute.link.key: defaultStyles.link,
@@ -604,6 +605,18 @@ class _TextLineState extends State<TextLine> {
             ),
           ));
       }
+    }
+
+    final boldAttr = nodeStyle.attributes[Attribute.bold.key];
+
+    if (boldAttr != null && boldAttr.value != null) {
+      FontWeight? weight;
+      if (boldAttr.value == true) {
+        weight = FontWeight.bold;
+      } else {
+        weight = FontWeight.normal;
+      }
+      res = res.merge(TextStyle(fontWeight: weight));
     }
 
     // Handle font weight from attributes
