@@ -87,7 +87,7 @@ class QuillSimpleToolbar extends StatelessWidget
               controller: controller,
               baseOptions: config.buttonOptions.base,
             ),
-          if (config.showBoldButton)
+          if (config.showFontWeightButton)
             QuillToolbarFontWeightButton(
               controller: controller,
               options: config.buttonOptions.fontWeight,
