@@ -75,7 +75,7 @@ class QuillToolbarFontSizeButtonState extends QuillToolbarBaseButtonState<
   String get _defaultDisplayText {
     return options.initialValue ??
         widget.options.defaultDisplayText ??
-        '16'; // Default to 16px
+        '14'; // Default to 14px
   }
 
   @override
@@ -214,7 +214,7 @@ class QuillToolbarFontSizeButtonState extends QuillToolbarBaseButtonState<
             enabled: hasFinalWidth,
             wrapper: (child) => Expanded(child: child),
             child: Text(
-              '${getLabel(currentValue) ?? 16}px',
+              '${getLabel(currentValue) ?? 14}px',
               overflow: options.labelOverflow,
               style: options.style ??
                   TextStyle(
