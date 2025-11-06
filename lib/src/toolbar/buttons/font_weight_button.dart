@@ -203,6 +203,9 @@ class QuillToolbarFontWeightButtonState extends QuillToolbarBaseButtonState<
           Icon(
             Icons.arrow_drop_down,
             size: iconSize * iconButtonFactor,
+            color: currentValue == 400
+                ? const Color(0xFF000000)
+                : const Color(0xFFC0C0C0),
           )
         ],
       ),
