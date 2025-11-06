@@ -200,10 +200,10 @@ class QuillToolbarFontWeightButtonState extends QuillToolbarBaseButtonState<
               },
             ),
           ),
-          const Icon(
+          Icon(
             Icons.arrow_drop_down,
-            size: 16, // Default icon size
-          ),
+            size: iconSize * iconButtonFactor,
+          )
         ],
       ),
     );
